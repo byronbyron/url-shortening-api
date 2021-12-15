@@ -9,5 +9,7 @@ function toggleCollapse(e) {
         ? this.setAttribute('aria-expanded', 'false')
         : this.setAttribute('aria-expanded', 'true')
 
+    this.classList.toggle('active');
+
     target.classList.toggle('show');
 }
