@@ -1,0 +1,25 @@
+.btn-pill--small {
+    font-weight: 700;
+    line-height: 1.5;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 1.375rem;
+    color: var(--white);
+    background-color: var(--cyan);
+    border-radius: 48px;
+    text-decoration: none;
+    transition: background 0.15s;
+
+    &:hover,
+    &:focus {
+        background-color: hsl(180, 66%, 69%);
+    }
+}
+
+.header__nav-cta {
+    margin-top: 0;
+    line-height: normal;
+    height: auto;
+    padding: 0.5rem 1.5rem;
+}

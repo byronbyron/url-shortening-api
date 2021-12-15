@@ -422,7 +422,8 @@ body {
   padding-left: 0;
   margin: 0;
 }
-.header__nav a {
+
+.header__nav-link {
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--white);
@@ -431,21 +432,71 @@ body {
   text-decoration: none;
   text-align: center;
 }
-.header__nav .header__nav-cta {
-  line-height: 48px;
-  height: 48px;
-  padding: 0;
-  margin-top: 0.75rem;
-  background-color: var(--cyan);
-  border-radius: 48px;
-}
 
 .header__nav--secondary {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 0.75rem;
   padding-top: 0.75rem;
 }
+.header__nav--secondary li:last-child {
+  margin-top: 0.75rem;
+}
 
+@media (max-width: 992px) {
+  .header__nav--secondary .btn-pill--small {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+@media (min-width: 991px) {
+  .header__navbar {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .header__logo {
+    margin-right: 1.8125rem;
+    margin-top: 3px;
+    padding-left: 2px;
+  }
+
+  .header__nav-collapse {
+    position: static;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    display: flex;
+  }
+
+  .header__nav {
+    display: flex;
+  }
+
+  .header__nav-link {
+    font-size: 0.9375rem;
+    padding: 0.5rem 1rem;
+    color: var(--gray);
+    transition: color 0.15s;
+  }
+  .header__nav-link:hover, .header__nav-link:focus {
+    color: var(--dark);
+  }
+
+  .header__nav--secondary {
+    border: 0;
+    margin: 0 0 0 auto;
+    padding-top: 0;
+  }
+  .header__nav--secondary li {
+    margin-left: 1.25rem;
+  }
+  .header__nav--secondary li:last-child {
+    margin-top: 0;
+  }
+}
 .hamburger {
   font: inherit;
   display: flex;
@@ -506,6 +557,35 @@ body {
 
 .active .hamburger-inner::after {
   transform: translate3d(0, -18px, 0) rotate(-90deg);
+}
+
+@media (min-width: 991px) {
+  .hamburger {
+    display: none;
+  }
+}
+.btn-pill--small {
+  font-weight: 700;
+  line-height: 1.5;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 1.375rem;
+  color: var(--white);
+  background-color: var(--cyan);
+  border-radius: 48px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-pill--small:hover, .btn-pill--small:focus {
+  background-color: #7ce4e4;
+}
+
+.header__nav-cta {
+  margin-top: 0;
+  line-height: normal;
+  height: auto;
+  padding: 0.5rem 1.5rem;
 }
 
 /*# sourceMappingURL=app.css.map*/
