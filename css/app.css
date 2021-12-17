@@ -369,8 +369,23 @@ body {
 h1, h2, h3, h4 {
   line-height: 1.3;
   margin-top: 0;
+  color: var(--dark);
 }
 
+h2 {
+  font-size: 1.625rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.125rem;
+  }
+}
 p {
   margin-top: 0;
 }
@@ -397,6 +412,28 @@ p {
 
 .bg-light {
   background-color: #f3f2f8;
+}
+
+.py-5 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-light {
+  color: var(--gray);
+}
+
+.max-w-prose {
+  max-width: 52ch;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header__navbar {
