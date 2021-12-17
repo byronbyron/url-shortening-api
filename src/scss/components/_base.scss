@@ -4,6 +4,7 @@
     --dark-violet: hsl(257, 27%, 26%);
     --red: hsl(0, 87%, 67%);
 
+    --very-light: hsl(255, 30%, 96%);
     --light: hsl(0, 0%, 75%);
     --gray: hsl(257, 7%, 63%);
     --dark: hsl(255, 11%, 22%);
@@ -56,8 +57,8 @@ p {
     border: 0;
 }
 
-.bg-light {
-    background-color: hsl(255, 30%, 96%);
+.bg-very-light {
+    background-color: var(--very-light);
 }
 
 .text-center {

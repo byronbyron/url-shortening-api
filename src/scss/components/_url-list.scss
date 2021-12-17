@@ -1,0 +1,39 @@
+.url-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.url-list__item {
+    background-color: var(--white);
+    border-radius: 0.625rem;
+    margin-top: 1.5rem;
+}
+
+.url-list__item-head {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid hsl(0, 0, 90%);
+
+    a {
+        color: var(--dark-gray);
+        text-decoration: none;
+    }
+}
+
+.url-list__item-body {
+    padding: 0.625rem 1rem 1rem;
+
+    a {
+        color: var(--cyan);
+        text-decoration: none;
+    }
+}
+
+.url-list__botton {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    display: block;
+    width: 100%;
+    margin-top: 0.625rem;
+    padding: 0.5rem;
+}
