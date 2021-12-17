@@ -424,7 +424,8 @@ p {
 
 @media (min-width: 768px) {
   .page__title {
-    font-size: 2.5rem;
+    font-size: 2.375rem;
+    margin-bottom: 1rem;
   }
 
   .page__text {
@@ -981,6 +982,18 @@ p {
   max-width: 327px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+}
+.card__group::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: calc(100% - 5rem);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--cyan);
 }
 
 .card {
@@ -1014,6 +1027,52 @@ p {
 
 .card__title {
   font-size: 1.375rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 991px) {
+  .card__group {
+    display: flex;
+    align-items: flex-start;
+    max-width: none;
+    margin: 0 -15px;
+    padding-bottom: 7.5rem;
+  }
+  .card__group::before {
+    width: calc(100% - 2rem);
+    height: 8px;
+    top: 155px;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+
+  .card {
+    flex: 1;
+    margin: 0 15px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: left;
+  }
+  .card + .card {
+    margin-top: 0;
+  }
+
+  .card:nth-child(2) {
+    margin-top: 44px;
+  }
+
+  .card:nth-child(3) {
+    margin-top: 88px;
+  }
+
+  .card__icon {
+    left: 2rem;
+    transform: none;
+  }
+
+  .card__text {
+    font-size: 0.9375rem;
+  }
 }
 
 /*# sourceMappingURL=app.css.map*/
