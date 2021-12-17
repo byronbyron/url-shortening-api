@@ -31,6 +31,18 @@
     }
 }
 
+.btn-secondary {
+    color: var(--white);
+    background-color: var(--dark-violet);
+    border-color: var(--dark-violet);
+
+    &:hover,
+    &:focus {
+        background-color: var(--dark-violet);
+        border-color: var(--dark-violet);
+    }
+}
+
 .btn-block {
     display: block;
     width: 100%;

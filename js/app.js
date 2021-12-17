@@ -13,6 +13,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_collapse__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_collapse__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/validate */ "./src/js/components/validate.js");
 /* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_validate__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/copy-to-clipboard */ "./src/js/components/copy-to-clipboard.js");
+/* harmony import */ var _components_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -33,6 +36,74 @@ function toggleCollapse(e) {
   this.getAttribute('aria-expanded') === 'true' ? this.setAttribute('aria-expanded', 'false') : this.setAttribute('aria-expanded', 'true');
   this.classList.toggle('active');
   target.classList.toggle('show');
+}
+
+/***/ }),
+
+/***/ "./src/js/components/copy-to-clipboard.js":
+/*!************************************************!*\
+  !*** ./src/js/components/copy-to-clipboard.js ***!
+  \************************************************/
+/***/ (() => {
+
+var list = document.querySelector('.js-list');
+list.addEventListener('click', handleCopy);
+
+function handleCopy(event) {
+  var element = event.target;
+
+  if (element.tagName == 'BUTTON') {
+    copyTextToClipboard(event.target.previousElementSibling.textContent);
+    resetButtons();
+    event.target.textContent = 'Copied!';
+    event.target.classList.remove('btn-primary');
+    event.target.classList.add('btn-secondary');
+  }
+}
+
+function resetButtons() {
+  var copyBtn = document.querySelectorAll('.js-copy-btn');
+  copyBtn.forEach(function (btn) {
+    btn.textContent = 'Copy';
+    btn.classList.remove('btn-primary');
+    btn.classList.remove('btn-secondary');
+    btn.classList.add('btn-primary');
+  });
+}
+
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text; // Avoid scrolling to bottom
+
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+}
+
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+
+  navigator.clipboard.writeText(text).then(function () {
+    console.log('Async: Copying to clipboard was successful!');
+  }, function (err) {
+    console.error('Async: Could not copy text: ', err);
+  });
 }
 
 /***/ }),
