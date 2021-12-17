@@ -11,6 +11,9 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_collapse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/collapse */ "./src/js/components/collapse.js");
 /* harmony import */ var _components_collapse__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_collapse__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/validate */ "./src/js/components/validate.js");
+/* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_validate__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 /***/ }),
@@ -30,6 +33,38 @@ function toggleCollapse(e) {
   this.getAttribute('aria-expanded') === 'true' ? this.setAttribute('aria-expanded', 'false') : this.setAttribute('aria-expanded', 'true');
   this.classList.toggle('active');
   target.classList.toggle('show');
+}
+
+/***/ }),
+
+/***/ "./src/js/components/validate.js":
+/*!***************************************!*\
+  !*** ./src/js/components/validate.js ***!
+  \***************************************/
+/***/ (() => {
+
+var form = document.querySelector('.js-form');
+var msg = document.querySelector('.form-msg');
+form.addEventListener('submit', handleSubmit);
+
+function handleSubmit(e) {
+  e.preventDefault();
+
+  if (!validateUrl(e.target.shorten.value)) {
+    event.target.shorten.setAttribute("aria-invalid", "true");
+    msg.style.display = 'block';
+  } else {
+    event.target.shorten.setAttribute("aria-invalid", "false");
+    msg.style.display = 'none';
+  }
+}
+
+function validateUrl(value) {
+  var input = document.createElement('input');
+  input.type = 'url';
+  input.required = true;
+  input.value = value;
+  return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
 }
 
 /***/ }),
