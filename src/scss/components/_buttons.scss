@@ -1,6 +1,6 @@
 .btn {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.5;
     display: inline-block;
     color: #212529;
@@ -10,12 +10,30 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: pointer;
     text-decoration: none;
     background-color: transparent;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
+    border: 0;
+    padding: 0.75rem 0.75rem;
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+    color: var(--white);
+    background-color: var(--cyan);
+    border-color: var(--cyan);
+
+    &:hover,
+    &:focus {
+        background-color: var(--cyan-light);
+        border-color: var(--cyan-light);
+    }
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
 }
 
 .btn-pill--small {
@@ -34,7 +52,7 @@
 
     &:hover,
     &:focus {
-        background-color: hsl(180, 56%, 69%);
+        background-color: var(--cyan-light);
     }
 }
 
@@ -48,7 +66,7 @@
 
     &:hover,
     &:focus {
-        background-color: hsl(180, 56%, 69%);
+        background-color: var(--cyan-light);
     }
 }
 

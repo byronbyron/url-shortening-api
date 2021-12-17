@@ -1,5 +1,6 @@
 :root {
     --cyan: hsl(180, 66%, 49%);
+    --cyan-light: hsl(180, 56%, 69%);
     --dark-violet: hsl(257, 27%, 26%);
     --red: hsl(0, 87%, 67%);
 
@@ -52,4 +53,8 @@ p {
     clip: rect(0,0,0,0);
     white-space: nowrap;
     border: 0;
+}
+
+.bg-light {
+    background-color: hsl(255, 30%, 96%);
 }
