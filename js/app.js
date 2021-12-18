@@ -11,8 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_collapse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/collapse */ "./src/js/components/collapse.js");
 /* harmony import */ var _components_collapse__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_collapse__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/validate */ "./src/js/components/validate.js");
-/* harmony import */ var _components_validate__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_validate__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/form */ "./src/js/components/form.js");
+/* harmony import */ var _components_form__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_form__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/copy-to-clipboard */ "./src/js/components/copy-to-clipboard.js");
 /* harmony import */ var _components_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -108,10 +108,10 @@ function copyTextToClipboard(text) {
 
 /***/ }),
 
-/***/ "./src/js/components/validate.js":
-/*!***************************************!*\
-  !*** ./src/js/components/validate.js ***!
-  \***************************************/
+/***/ "./src/js/components/form.js":
+/*!***********************************!*\
+  !*** ./src/js/components/form.js ***!
+  \***********************************/
 /***/ (() => {
 
 var form = document.querySelector('.js-form');
@@ -127,6 +127,7 @@ function handleSubmit(e) {
   } else {
     event.target.shorten.setAttribute("aria-invalid", "false");
     msg.style.display = 'none';
+    shortenLink(e.target.shorten.value);
   }
 }
 
@@ -136,6 +137,22 @@ function validateUrl(value) {
   input.required = true;
   input.value = value;
   return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
+}
+
+function shortenLink(link) {
+  var res = fetch("https://api.shrtco.de/v2/shorten?url=".concat(link)).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    var originalLink = data.result.original_link;
+    var shortLink = data.result.full_short_link3;
+    injectUrlListItem(originalLink, shortLink);
+  });
+}
+
+function injectUrlListItem(originalLink, shortLink) {
+  var listItem = "<div class=\"url-list__item\">\n                    <div class=\"url-list__item-head\">\n                      <a href=\"".concat(originalLink, "\" target=\"_blank\" rel=\"noreferrer nofollow\">").concat(originalLink, "</a>\n                    </div>\n                    <div class=\"url-list__item-body\">\n                      <a href=\"").concat(shortLink, "\" target=\"_blank\" rel=\"noreferrer nofollow\">").concat(shortLink, "</a>\n                      <button type=\"button\" class=\"btn btn-primary url-list__botton js-copy-btn\">Copy</button>\n                    </div>\n                  </div>");
+  var list = document.querySelector('.js-url-list');
+  list.insertAdjacentHTML('beforeend', listItem);
 }
 
 /***/ }),
