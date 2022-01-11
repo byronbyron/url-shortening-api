@@ -1,7 +1,14 @@
 const form = document.querySelector('.js-form');
 const msg = document.querySelector('.form-msg');
+let storedLinks = JSON.parse(localStorage.getItem('links'));
 
-form.addEventListener('submit', handleSubmit);
+document.addEventListener('DOMContentLoaded', () => {
+    form.addEventListener('submit', handleSubmit);
+
+    storedLinks.forEach(link => {
+        injectUrlListItem(link.originalLink, link.shortLink);
+    });
+});
 
 function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +43,13 @@ function shortenLink(link) {
             const originalLink = data.result.original_link;
             const shortLink = data.result.full_short_link3;
             injectUrlListItem(originalLink, shortLink);
+            saveToLocalStorage(originalLink, shortLink);
         });
+}
+
+function saveToLocalStorage(originalLink, shortLink) {
+    storedLinks.push({ originalLink, shortLink });
+    localStorage.setItem('links', JSON.stringify(storedLinks));
 }
 
 function injectUrlListItem(originalLink, shortLink) {
