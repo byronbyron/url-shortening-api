@@ -5,6 +5,8 @@ let storedLinks = JSON.parse(localStorage.getItem('links'));
 document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', handleSubmit);
 
+    if (storedLinks === null) return
+    
     storedLinks.forEach(link => {
         injectUrlListItem(link.originalLink, link.shortLink);
     });
@@ -21,6 +23,8 @@ function handleSubmit(e) {
         msg.style.display = 'none';
 
         shortenLink(e.target.shorten.value);
+        e.target.shorten.value = '';
+        e.target.shorten.focus();
     }
 }
 
@@ -48,6 +52,10 @@ function shortenLink(link) {
 }
 
 function saveToLocalStorage(originalLink, shortLink) {
+    if (storedLinks === null) {
+        storedLinks = [];
+    }
+
     storedLinks.push({ originalLink, shortLink });
     localStorage.setItem('links', JSON.stringify(storedLinks));
 }
