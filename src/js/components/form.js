@@ -5,7 +5,7 @@ let storedLinks = JSON.parse(localStorage.getItem('links'));
 document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', handleSubmit);
 
-    if (storedLinks === null) return
+    if (storedLinks === null) return;
     
     storedLinks.forEach(link => {
         injectUrlListItem(link.originalLink, link.shortLink);
@@ -62,14 +62,14 @@ function saveToLocalStorage(originalLink, shortLink) {
 
 function injectUrlListItem(originalLink, shortLink) {
     const listItem = `<div class="url-list__item">
-                    <div class="url-list__item-head">
-                      <a href="${originalLink}" target="_blank" rel="noreferrer nofollow">${originalLink}</a>
-                    </div>
-                    <div class="url-list__item-body">
-                      <a href="${shortLink}" target="_blank" rel="noreferrer nofollow">${shortLink}</a>
-                      <button type="button" class="btn btn-primary url-list__botton js-copy-btn">Copy</button>
-                    </div>
-                  </div>`;
+                        <div class="url-list__item-head">
+                          <a href="${originalLink}" target="_blank" rel="noreferrer nofollow">${originalLink}</a>
+                        </div>
+                        <div class="url-list__item-body">
+                          <a href="${shortLink}" target="_blank" rel="noreferrer nofollow">${shortLink}</a>
+                          <button type="button" class="btn btn-primary url-list__botton js-copy-btn">Copy</button>
+                        </div>
+                      </div>`;
 
     const list = document.querySelector('.js-url-list');
     list.insertAdjacentHTML('beforeend', listItem);
